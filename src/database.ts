@@ -1,6 +1,6 @@
 import * as mongodb from "mongodb";
-import { Meal } from "./meal.js";
-import { User } from "./user.js";
+import { Meal } from "./meal";
+import { User } from "./user";
 
 export const collections: {
     meals?: mongodb.Collection<Meal>;

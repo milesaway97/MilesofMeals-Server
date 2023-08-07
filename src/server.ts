@@ -1,8 +1,8 @@
-import { mealRouter } from "./meal.routes.js";
+import { mealRouter } from "./meal.routes";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import express from "express";
-import { connectToDatabase } from "./database.js";
+import { connectToDatabase } from "./database";
 
 // Load environment variables from the .env file, where the ATLAS_URI is configured
 dotenv.config();
@@ -14,12 +14,12 @@ if (!ATLAS_URI) {
     process.exit(1);
 }
 
+// const express = require("express");
+
 connectToDatabase(ATLAS_URI)
     .then(() => {
-        const express = require("express");
+        const PORT = 3000;
         const app = express();
-        const PORT = process.env.PORT || 3030;
-
         app.use(cors());
         app.use("/meals", mealRouter);
 

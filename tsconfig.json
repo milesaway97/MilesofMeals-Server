@@ -1,17 +1,17 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json",
+//  "extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json",
   "ts-node": { 
     "esm": true, 
   },
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
+    "outDir": "./build",
     "target": "es6",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist",
     "baseUrl": ".",
     "allowJs": true,
     "paths": {

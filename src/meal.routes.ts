@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as mongodb from "mongodb";
-import { collections } from "./database.js";
+import { collections } from "./database";
 
 export const mealRouter = express.Router();
 mealRouter.use(express.json());
