@@ -8,6 +8,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "outDir": "./build",
+    "skipLibCheck": true,
     "target": "es6",
     "noImplicitAny": true,
     "moduleResolution": "node",
