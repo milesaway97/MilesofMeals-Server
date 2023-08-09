@@ -1,4 +1,5 @@
 import { mealRouter } from "./meal.routes";
+import { userRouter } from "./user.routes";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import express from "express";
@@ -22,6 +23,7 @@ connectToDatabase(ATLAS_URI)
         const app = express();
         app.use(cors());
         app.use("/meals", mealRouter);
+        app.use("/users", userRouter);
 
         // start the Express server
         app.listen(PORT, () => {
