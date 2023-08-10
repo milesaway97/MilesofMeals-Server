@@ -24,7 +24,7 @@ connectToDatabase(ATLAS_URI)
         const mealRouter = require("./meal.routes");
         const userRouter = require("./user.routes");
         const app = express();
-        app.use(cors());
+        // app.use(cors());
         app.use("/meals", mealRouter);
         app.use("/users", userRouter);
 
