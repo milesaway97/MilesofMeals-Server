@@ -54,14 +54,13 @@ userRouter.post("/", async (req, res) => {
 // ‘PUT /users/:id’ endpoint creates a new user if the user's id is not already in the collection
 userRouter.put(":id", async (req, res) => {
     try {
-        const id = req?.params?.id;
+        const userId = req?.params?.id;
         const user = req.body;
         // const query = { _id: new mongodb.ObjectId(id) };
         // const result = await collections.users.updateOne(query, { $set: user });
 
-        console.log("const id = " + id);
         const result = await collections.users.updateOne(
-            { id: id },
+            { id: userId },
             {
                 $setOnInsert: user
             },
@@ -69,9 +68,9 @@ userRouter.put(":id", async (req, res) => {
         );
         
         if (result.acknowledged) {
-            res.status(200).send(`Created a new user: ID ${id}.`);
+            res.status(200).send(`Created a new user: ID ${userId}.`);
         } else {
-            res.status(304).send(`Failed to create a new user: ID ${id}`);
+            res.status(304).send(`Failed to create a new user: ID ${userId}`);
         }
     } catch (error) {
         console.error(error.message);
