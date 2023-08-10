@@ -56,6 +56,9 @@ userRouter.put(":id", async (req, res) => {
     try {
         const userId = req?.params?.id;
         const user = req.body;
+        
+        console.log(userId);
+        console.log(user);
         // const query = { _id: new mongodb.ObjectId(id) };
         // const result = await collections.users.updateOne(query, { $set: user });
 
