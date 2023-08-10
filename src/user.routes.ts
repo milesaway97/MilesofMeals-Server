@@ -37,6 +37,7 @@ userRouter.get("/:id", async (req, res) => {
 userRouter.post("/", async (req, res) => {
     try {
         const user = req.body;
+        console.log("const user = " + user);
         const result = await collections.users.insertOne(user);
 
         if (result.acknowledged) {
@@ -58,6 +59,7 @@ userRouter.put(":id", async (req, res) => {
         // const query = { _id: new mongodb.ObjectId(id) };
         // const result = await collections.users.updateOne(query, { $set: user });
 
+        console.log("const id = " + id);
         const result = await collections.users.updateOne(
             { id: id },
             {
