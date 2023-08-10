@@ -25,11 +25,11 @@ userRouter.get("/:id", async (req, res) => {
         if (user) {
             res.status(200).send(user);
         } else {
-            res.status(404).send(undefined);
+            res.status(404).send(`Failed to find a user: ID ${id}`);
         }
 
     } catch (error) {
-        res.status(404).send(undefined);
+        res.status(404).send(`Failed to find a user: ID ${req?.params?.id}`);
     }
 });
 
