@@ -20,13 +20,13 @@ if (!ATLAS_URI) {
 connectToDatabase(ATLAS_URI)
     .then(() => {
         const PORT = 3000;
-        const express = require("express");
-        const mealRouter = require("./meal.routes");
-        const userRouter = require("./user.routes");
+        // const express = require("express");
+        // const mealRouter = require("./meal.routes");
+        // const userRouter = require("./user.routes");
         const app = express();
-        // app.use(cors());
-        app.use("/meals", mealRouter);
+        app.use(cors());
         app.use("/users", userRouter);
+        app.use("/meals", mealRouter);
 
         // start the Express server
         app.listen(PORT, () => {
