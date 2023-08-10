@@ -19,8 +19,8 @@ userRouter.get("/", async (_req, res) => {
 userRouter.get("/:id", async (req, res) => {
     try {
         const id = req?.params?.id;
-        const query = { _id: new mongodb.ObjectId(id) };
-        const user = await collections.users.findOne(query);
+        // const query = { _id: new mongodb.ObjectId(id) };
+        const user = await collections.users.findOne({id: id});
 
         if (user) {
             res.status(200).send(user);
