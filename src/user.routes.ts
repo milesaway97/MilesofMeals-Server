@@ -50,20 +50,26 @@ userRouter.post("/", async (req, res) => {
     }
 });
 
-// ‘PUT /users/:id’ endpoint updates an existing user
-userRouter.put("/:id", async (req, res) => {
+// ‘PUT /users/:id’ endpoint creates a new user if the user's id is not already in the collection
+userRouter.put(":id", async (req, res) => {
     try {
         const id = req?.params?.id;
         const user = req.body;
-        const query = { _id: new mongodb.ObjectId(id) };
-        const result = await collections.users.updateOne(query, { $set: user });
+        // const query = { _id: new mongodb.ObjectId(id) };
+        // const result = await collections.users.updateOne(query, { $set: user });
 
-        if (result && result.matchedCount) {
-            res.status(200).send(`Updated an user: ID ${id}.`);
-        } else if (!result.matchedCount) {
-            res.status(404).send(`Failed to find an user: ID ${id}`);
+        const result = await collections.users.updateOne(
+            { id: id },
+            {
+                $setOnInsert: user
+            },
+            { upsert: true }
+        );
+        
+        if (result.acknowledged) {
+            res.status(200).send(`Created a new user: ID ${id}.`);
         } else {
-            res.status(304).send(`Failed to update an user: ID ${id}`);
+            res.status(304).send(`Failed to create a new user: ID ${id}`);
         }
     } catch (error) {
         console.error(error.message);
