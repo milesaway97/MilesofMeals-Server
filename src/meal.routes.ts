@@ -15,6 +15,20 @@ mealRouter.get("/", async (_req, res) => {
     }
 });
 
+// 'GET /meals/usermeals/:userId' endpoint retrieves all of user's meals in database
+mealRouter.get("/usermeals/:userId", async (_req, res) => {
+    try {
+        const userId = _req?.params?.userId;
+        const meals = await collections.meals.find(
+            { id: userId }).toArray();
+        console.log(userId);
+        console.log(meals);
+        res.status(200).send(meals);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 // 'GET /meals/:id' endpoint retrieves a single meal by MongoDB object id
 mealRouter.get("/:id", async (req, res) => {
     try {
